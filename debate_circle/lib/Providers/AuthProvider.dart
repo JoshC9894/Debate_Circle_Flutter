@@ -1,4 +1,3 @@
-import 'package:debate_circle/Services/DebateService.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -7,27 +6,17 @@ abstract class IAuthProvider extends ChangeNotifier {
   Future<void> signInWithGoogle();
   Future<void> signOutOfGoogle();
   Future<FirebaseUser> get currentUser;
-  Future<String> talkToAPI();
 }
 
 class AuthProvider extends IAuthProvider {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  final IDebateService _service = DebateService();
-
   AuthProvider() {
     notifyListeners();
   }
 
   Future<FirebaseUser> get currentUser => _auth.currentUser();
-
-  Future<String> talkToAPI() async {
-    final user = await _auth.currentUser();
-    final tokenResult = await user.getIdToken();
-    final result = _service.talkToApi(tokenResult.token);
-    return result;
-  }
 
   @override
   Future<void> signInWithGoogle() async {

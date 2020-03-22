@@ -1,4 +1,4 @@
-import 'package:debate_circle/Pages/FirstScreen.dart';
+import 'package:debate_circle/Pages/Home/HomePage.dart';
 import 'package:debate_circle/Providers/AuthProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) {
-        return FirstScreen();
+        return HomePage();
       }),
     );
   }
